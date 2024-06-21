@@ -36,23 +36,23 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white p-16 rounded-lg shadow-lg max-w-10xl w-full">
-        <h1 className="text-4xl font-bold mb-6 text-center">CGPA Calculator</h1>
-        <div className="grid grid-cols-4 gap-8">
+      <div className="bg-white p-8 md:p-16 rounded-lg shadow-lg max-w-4xl w-full">
+        <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">CGPA Calculator</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {sgpas.map((sgpa, index) => (
-            <div key={index} className={`p-8 border bg-gray-300 border-gray-300 rounded-lg col-span-2 hover:bg-gray-600 transition duration-200`}>
-              <div className='hover:bg-gray-600 hover:text-white'>
-                <label className="block bold text-gray-1000 mb-4">
+            <div key={index} className="p-4 border bg-gray-300 border-gray-300 rounded-lg hover:bg-gray-600 transition duration-200">
+              <div className="hover:bg-gray-600 hover:text-white">
+                <label className="block bold text-gray-1000 mb-2 md:mb-4">
                   Semester {index + 1} SGPA
                 </label>
               </div>
               <input
                 type="number"
-                step="1"
+                step="0.01"
                 value={sgpa === null ? '' : sgpa}
                 onChange={(e) => handleChange(index, e.target.value)}
                 placeholder="0"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+                className="w-full px-2 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg"
               />
               {inputErrors[index] && (
                 <p className="text-red-500 text-sm mt-2">Please enter a valid SGPA (0-10).</p>
@@ -63,13 +63,13 @@ const App: React.FC = () => {
         <button
           onClick={calculateCgpa}
           disabled={sgpas.includes(null) || inputErrors.includes(true)}
-          className={`w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 transition duration-200 mt-8 ${inputErrors.includes(true) ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`w-full bg-blue-500 text-white py-2 md:py-4 rounded-lg hover:bg-blue-600 transition duration-200 mt-4 md:mt-8 ${inputErrors.includes(true) ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           Calculate CGPA
         </button>
         {cgpa !== null && (
-          <div className="mt-8 text-center">
-            <h2 className="text-2xl font-bold">Your CGPA is: {cgpa.toFixed(2)}</h2>
+          <div className="mt-4 md:mt-8 text-center">
+            <h2 className="text-xl md:text-2xl font-bold">Your CGPA is: {cgpa.toFixed(2)}</h2>
           </div>
         )}
       </div>
