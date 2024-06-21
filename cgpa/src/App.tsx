@@ -48,7 +48,7 @@ const App: React.FC = () => {
               </div>
               <input
                 type="number"
-                step="0.01"
+                step="1"
                 value={sgpa === null ? '' : sgpa}
                 onChange={(e) => handleChange(index, e.target.value)}
                 placeholder="0"
